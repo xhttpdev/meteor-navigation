@@ -1,0 +1,58 @@
+<template name="invictus_navigation_settings">
+    <div class="panel panel-info navigation-panel">
+        <div class="panel-heading">Navigation Settings</div>
+        <div class="panel-body">
+            <header>
+                <button type="button" class="btn btn-default new">
+                    <span class="glyphicon glyphicon-plus"></span> Neu
+                </button>
+            </header>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Text</th>
+                    <th>Route</th>
+                    <th>Extra Class</th>
+                    <th class="text-center">Versteckt</th>
+                    <th class="text-center">Collapsable</th>
+                    <th>Typ</th>
+                    <th class="text-right">Aktion</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each data}}
+                <tr>
+                    <td><input type="text" class="form-control" name="text" value="{{text}}"></td>
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-addon">/</span>
+                            <input type="text" class="form-control" name="route" value="{{route}}">
+                        </div>
+                    </td>
+                    <td><input type="text" class="form-control" name="cls" value="{{cls}}"></td>
+                    <td class="text-center"><input type="checkbox" name="hidden" checked="{{hidden}}"></td>
+                    <td class="text-center"><input type="checkbox" name="collapsable" checked="{{collapsable}}"></td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default type-text {{getTypeState 'text'}}">
+                                Text
+                            </button>
+                            <button type="button" class="btn btn-default type-button {{getTypeState 'button'}}">
+                                Button
+                            </button>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <button type="button" class="btn btn-default btn-xs delete" title="Löschen">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+                {{/each}}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
