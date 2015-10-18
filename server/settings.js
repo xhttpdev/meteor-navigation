@@ -14,6 +14,18 @@ Meteor.methods({
     },
 
     updateNavigationNode: function (id, data) {
+        if (!Meteor.userId()) {
+            throw new Meteor.Error("not-authorized");
+        }
+
         NavigationCollection.update(id, {$set : data});
+    },
+
+    deleteNavigationNode: function (id) {
+        if (!Meteor.userId()) {
+            throw new Meteor.Error("not-authorized");
+        }
+
+        NavigationCollection.remove(id);
     }
 });

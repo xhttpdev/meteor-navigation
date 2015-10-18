@@ -1,6 +1,6 @@
 Template.invictus_navigation.helpers({
     data: function () {
-        return NavigationCollection.find({});
+        return NavigationCollection.find({}, {sort: {'pos': 1}});
     },
 
     getBrand: function () {
