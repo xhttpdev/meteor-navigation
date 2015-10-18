@@ -14,9 +14,9 @@
                     <th>Text</th>
                     <th>Route</th>
                     <th>Extra Class</th>
-                    <th class="text-center">Versteckt</th>
-                    <th class="text-center">Collapsable</th>
+                    <th>Flags</th>
                     <th>Typ</th>
+                    <th>Option</th>
                     <th class="text-right">Aktion</th>
                 </tr>
                 </thead>
@@ -31,8 +31,18 @@
                         </div>
                     </td>
                     <td><input type="text" class="form-control" name="cls" value="{{cls}}"></td>
-                    <td class="text-center"><input type="checkbox" name="hidden" checked="{{hidden}}"></td>
-                    <td class="text-center"><input type="checkbox" name="collapsable" checked="{{collapsable}}"></td>
+                    <td>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="hidden" checked="{{hidden}}">Versteckt
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="collapsable" checked="{{collapsable}}">Collapsable
+                            </label>
+                        </div>
+                    </td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default type-text {{getTypeState 'text'}}">
@@ -42,6 +52,17 @@
                                 Button
                             </button>
                         </div>
+                    </td>
+                    <td>
+                        <select class="form-control option">
+                            {{#each options}}
+                                {{#if optionIsActive ../option}}
+                                    <option selected value="{{name}}">{{name}}</option>
+                                {{else}}
+                                    <option value="{{name}}">{{name}}</option>
+                                {{/if}}
+                            {{/each}}
+                        </select>
                     </td>
                     <td class="text-right">
                         <button type="button" class="btn btn-default btn-xs up" title="Hoch">

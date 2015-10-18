@@ -13,7 +13,8 @@ Template.invictus_navigation_settings.events({
             hidden: true,
             type: 'text',
             collapsable: true,
-            pos: pos
+            pos: pos,
+            option: 'default'
         });
     },
     'click .delete': function (event) {
@@ -73,6 +74,13 @@ Template.invictus_navigation_settings.events({
                 data[event.target.name] = event.target.checked;
                 break;
         }
+
+        Meteor.call("updateNavigationNode", this._id, data);
+    },
+    'change .option': function (event) {
+        var data = this;
+
+        data.option = event.target.value;
 
         Meteor.call("updateNavigationNode", this._id, data);
     },
