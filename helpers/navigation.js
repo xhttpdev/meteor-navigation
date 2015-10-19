@@ -1,6 +1,10 @@
 Template.invictus_navigation.helpers({
-    data: function () {
-        return NavigationCollection.find({}, {sort: {'pos': 1}});
+    dataCollapsable: function () {
+        return NavigationCollection.find({collapsable: true}, {sort: {'pos': 1}});
+    },
+
+    dataNotCollapsable: function () {
+        return NavigationCollection.find({collapsable: false}, {sort: {'pos': 1}});
     },
 
     getBrand: function () {
@@ -40,9 +44,19 @@ Template.invictus_navigation.helpers({
     }
 });
 
-Template.invictus_navigation_item.helpers({
+Template.invictus_navigation_item_collapsable.helpers({
     isText: function () {
         return (this.type === 'text');
+    },
+
+    isActive: function () {
+        return (Session.get('activeUrl') === '/' + this.route);
+    }
+});
+
+Template.invictus_navigation_item_not_collapsable.helpers({
+    isButton: function () {
+        return (this.type === 'button');
     },
 
     isActive: function () {

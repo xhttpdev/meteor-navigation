@@ -4,7 +4,7 @@ Template.invictus_navigation.events({
     }
 });
 
-Template.invictus_navigation_item.events({
+Template.invictus_navigation_item_collapsable.events({
     'click button': function (event) {
         var button = $(event.target);
         var route = button.data('route');

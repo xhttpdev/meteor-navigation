@@ -62,6 +62,11 @@ Template.invictus_navigation_settings.events({
             Meteor.call("updateNavigationNode", cursor._id, cursor);
         }
     },
+    'click .edit': function (event) {
+        Session.set('navigationData', this);
+
+        $('#navigation-modal').modal('show');
+    },
     'change input': function (event) {
         var data = this;
 
@@ -76,12 +81,39 @@ Template.invictus_navigation_settings.events({
         }
 
         Meteor.call("updateNavigationNode", this._id, data);
+    }
+});
+
+Template.invictus_settings_modal.events({
+    'submit form': function (event) {
+        event.preventDefault();
+    },
+    'change input': function (event) {
+        var data = this;
+
+        switch (event.target.type) {
+            case 'text':
+            case 'radio':
+                data[event.target.name] = event.target.value;
+                break;
+            case 'checkbox':
+                data[event.target.name] = event.target.checked;
+                break;
+        }
+
+        if (data.collapsable === false) {
+            data.type = 'button';
+        }
+
+        Session.set('navigationData', data);
+        Meteor.call("updateNavigationNode", this._id, data);
     },
     'change .option': function (event) {
         var data = this;
 
         data.option = event.target.value;
 
+        Session.set('navigationData', data);
         Meteor.call("updateNavigationNode", this._id, data);
     },
     'click .type-text': function (event) {
@@ -89,6 +121,11 @@ Template.invictus_navigation_settings.events({
 
         data.type = 'text';
 
+        if (data.collapsable === false) {
+            data.type = 'button';
+        }
+
+        Session.set('navigationData', data);
         Meteor.call("updateNavigationNode", this._id, data);
     },
     'click .type-button': function (event) {
@@ -96,6 +133,7 @@ Template.invictus_navigation_settings.events({
 
         data.type = 'button';
 
+        Session.set('navigationData', data);
         Meteor.call("updateNavigationNode", this._id, data);
     }
 });

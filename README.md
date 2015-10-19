@@ -1,4 +1,4 @@
 # TODO
 
 - übersetzungen
-- feld collapsable (damit navigationspunkt mobil trotzdem angezeigt wird)
+- Text deaktivieren wenn collapsable aus ist

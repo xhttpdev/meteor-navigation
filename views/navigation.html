@@ -9,11 +9,14 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">{{getBrand}}</a>
+                {{#each dataNotCollapsable}}
+                    {{> invictus_navigation_item_not_collapsable}}
+                {{/each}}
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    {{#each data}}
-                        {{> invictus_navigation_item}}
+                    {{#each dataCollapsable}}
+                        {{> invictus_navigation_item_collapsable}}
                     {{/each}}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -48,15 +51,22 @@
     </nav>
 </template>
 
-<template name="invictus_navigation_item">
+<template name="invictus_navigation_item_collapsable">
     {{#unless hidden}}
         <li class="{{#if isActive}}active{{/if}}">
             {{#if isText}}
                 <a href="{{route}}">{{text}}</a>
             {{else}}
-                <button type="button" data-route="{{route}}" class="btn btn-{{option}} navbar-btn {{cls}}">{{text}}</button>
+                <button type="button" data-route="{{route}}" class="btn btn-{{option}} navbar-btn {{#if isActive}}active{{/if}} {{cls}}">{{text}}</button>
             {{/if}}
         </li>
+    {{/unless}}
+</template>
 
+<template name="invictus_navigation_item_not_collapsable">
+    {{#unless hidden}}
+        {{#if isButton}}
+            <button type="button" data-route="{{route}}" class="btn btn-{{option}} navbar-btn {{#if isActive}}active{{/if}} {{cls}}">{{text}}</button>
+        {{/if}}
     {{/unless}}
 </template>
