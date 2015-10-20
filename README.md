@@ -1,4 +1,3 @@
-# TODO
+# invictus:navigation #
 
-- übersetzungen
-- environemt variable benutzen um navigation settings auf dem server auszublenden
+Description cooming soon.

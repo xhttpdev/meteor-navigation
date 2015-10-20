@@ -20,7 +20,7 @@ Template.invictus_navigation_settings.events({
     'click .main-buttons .delete': function (event) {
         var data = this;
 
-        if (confirm('Soll der Navigationspunkt ' + data.text + ' wirklich gelöscht werden?')) {
+        if (confirm(Navigation.getText('deleteConfirmationText', {text: data.text}))) {
             Meteor.call('deleteNavigationNode', data._id, function () {
                 Sorting.calcPositions();
             });
@@ -100,7 +100,7 @@ Template.invictus_navigation_node.events({
     'click .node-buttons .delete': function (event) {
         var data = this;
 
-        if (confirm('Soll der Navigationspunkt ' + data.text + ' wirklich gelöscht werden?')) {
+        if (confirm(Navigation.getText('deleteConfirmationText', {text: data.text}))) {
             var cursor = NestedData.remove(NavigationCollection, data, 'nodes');
             Meteor.call("updateNavigationNode", cursor._id, cursor, function() {
                 Sorting.calcPositions();

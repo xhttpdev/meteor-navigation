@@ -1,8 +1,8 @@
 Package.describe({
     name: 'invictus:navigation',
-    version: '0.0.1',
+    version: '0.8.0',
     // Brief, one-line summary of the package.
-    summary: '',
+    summary: 'Bootstrap Navbar Administration',
     // URL to the Git repository containing the source code for this package.
     git: 'https://github.com/xhttpdev/meteor-navigation.git',
     // By default, Meteor will default to using README.md for documentation.
