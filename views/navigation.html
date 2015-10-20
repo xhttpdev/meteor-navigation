@@ -9,9 +9,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">{{getBrand}}</a>
-                {{#each dataNotCollapsable}}
-                    {{> invictus_navigation_item_not_collapsable}}
-                {{/each}}
+                <span class="not-collapsable">
+                    {{#each dataNotCollapsable}}
+                        {{> invictus_navigation_item_not_collapsable}}
+                    {{/each}}
+                </span>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

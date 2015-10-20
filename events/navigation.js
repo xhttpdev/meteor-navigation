@@ -1,6 +1,8 @@
 Template.invictus_navigation.events({
     'click #navbar': function (event) {
-        //$(event.currentTarget).collapse('hide');
+        if (!$(event.target).hasClass('dropdown-toggle')) {
+            $(event.currentTarget).collapse('hide');
+        }
     }
 });
 

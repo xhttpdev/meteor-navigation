@@ -1,6 +1,6 @@
 Template.invictus_navigation.helpers({
     dataCollapsable: function () {
-        return NavigationCollection.find({collapsable: true}, {sort: {'pos': 1}});
+        return NavigationCollection.find({}, {sort: {'pos': 1}});
     },
 
     dataNotCollapsable: function () {

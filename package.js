@@ -24,6 +24,7 @@ Package.onUse(function (api) {
     ]);
 
     api.addFiles([
+        'styles.scss',
         'lib/NestedData.js',
         'lib/Sorting.js',
         'navigation.js',
