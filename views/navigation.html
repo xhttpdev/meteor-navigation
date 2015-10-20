@@ -21,16 +21,22 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {{#if showAccount}}
-                        {{#if isButton showAccount}}
-                            <li>
-                                {{> account_button_navbar }}
-                            </li>
-                        {{/if}}
-                        {{#if isLink showAccount}}
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Einstellungen <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
                             <li class="{{#if isActive 'account_settings'}}active{{/if}}">
                                 {{> account_link }}
                             </li>
-                        {{/if}}
+                            <li>
+                                {{> invictus_navigation_link}}
+                            </li>
+                        </ul>
+                    </li>
+                    {{else}}
+                        <li>
+                            {{> invictus_navigation_link}}
+                        </li>
                     {{/if}}
 
                     {{#if showLogout}}
@@ -86,4 +92,11 @@
             <button type="button" data-route="{{route}}" class="btn btn-{{option}} navbar-btn {{#if isActive}}active{{/if}} {{cls}}">{{text}}</button>
         {{/if}}
     {{/unless}}
+</template>
+
+<template name="invictus_navigation_link">
+    <a href="/navigation_settings" role="button">
+        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+        Navigation
+    </a>
 </template>

@@ -21,36 +21,16 @@ Template.invictus_navigation_settings.events({
         var data = this;
 
         if (confirm('Soll der Navigationspunkt ' + data.text + ' wirklich gelöscht werden?')) {
-            Meteor.call('deleteNavigationNode', data._id);
+            Meteor.call('deleteNavigationNode', data._id, function () {
+                Sorting.calcPositions();
+            });
         }
     },
     'click .main-buttons .up': function (event) {
-        var data = this;
-        var newPos = data.pos - 1;
-
-        var cursor = NavigationCollection.findOne({pos: newPos});
-
-        if (cursor !== undefined) {
-            cursor.pos = data.pos;
-            data.pos = newPos;
-
-            Meteor.call("updateNavigationNode", data._id, data);
-            Meteor.call("updateNavigationNode", cursor._id, cursor);
-        }
+        Sorting.switchPositions(this, -1);
     },
     'click .main-buttons .down': function (event) {
-        var data = this;
-        var newPos = data.pos + 1;
-
-        var cursor = NavigationCollection.findOne({pos: newPos});
-
-        if (cursor !== undefined) {
-            cursor.pos = data.pos;
-            data.pos = newPos;
-
-            Meteor.call("updateNavigationNode", data._id, data);
-            Meteor.call("updateNavigationNode", cursor._id, cursor);
-        }
+        Sorting.switchPositions(this, 1);
     },
     'click .main-buttons .edit': function (event) {
         Session.set('navigationData', this);
@@ -122,7 +102,9 @@ Template.invictus_navigation_node.events({
 
         if (confirm('Soll der Navigationspunkt ' + data.text + ' wirklich gelöscht werden?')) {
             var cursor = NestedData.remove(NavigationCollection, data, 'nodes');
-            Meteor.call("updateNavigationNode", cursor._id, cursor);
+            Meteor.call("updateNavigationNode", cursor._id, cursor, function() {
+                Sorting.calcPositions();
+            });
         }
     },
     'click .node-buttons .up': function (event) {
