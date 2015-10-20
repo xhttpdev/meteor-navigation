@@ -19,44 +19,89 @@
                 </thead>
                 <tbody>
                 {{#each data}}
-                <tr>
-                    <td><input type="text" class="form-control" name="text" value="{{text}}"></td>
-                    <td>
-                        <div class="input-group">
-                            <span class="input-group-addon">/</span>
-                            <input type="text" class="form-control" name="route" value="{{route}}">
-                        </div>
-                    </td>
-                    <td class="text-center">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="hidden" checked="{{hidden}}">
-                            </label>
-                        </div>
+                    <tr>
+                        <td><input type="text" class="form-control" name="text" value="{{text}}"></td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">/</span>
+                                <input type="text" class="form-control" name="route" value="{{route}}">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="hidden" checked="{{hidden}}">
+                                </label>
+                            </div>
 
-                    </td>
-                    <td class="text-right">
-                        <button type="button" class="btn btn-default btn-sm edit" title="Bearbeiten">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-sm up" title="Hoch">
-                            <span class="glyphicon glyphicon-arrow-up"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-sm down" title="Herunter">
-                            <span class="glyphicon glyphicon-arrow-down"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-sm delete" title="Löschen">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                    </td>
-                </tr>
+                        </td>
+                        <td class="text-right main-buttons">
+                            {{#if isDropdown}}
+                            <button type="button" class="btn btn-default btn-sm add" title="Unterpunk erstellen">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            {{/if}}
+                            <button type="button" class="btn btn-default btn-sm edit" title="Bearbeiten">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm up" title="Hoch">
+                                <span class="glyphicon glyphicon-arrow-up"></span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm down" title="Herunter">
+                                <span class="glyphicon glyphicon-arrow-down"></span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm delete" title="Löschen">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    {{#each nodes}}
+                        {{> invictus_navigation_node}}
+                    {{/each}}
                 {{/each}}
-
                 </tbody>
             </table>
         </div>
     </div>
     {{> invictus_settings_modal}}
+</template>
+
+<template name="invictus_navigation_node">
+    <tr class="warning">
+        <td>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                </span>
+                <input type="text" class="form-control" name="text" value="{{text}}">
+            </div>
+        </td>
+        <td>
+            <div class="input-group">
+                <span class="input-group-addon">/</span>
+                <input type="text" class="form-control" name="route" value="{{route}}">
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="hidden" checked="{{hidden}}">
+                </label>
+            </div>
+
+        </td>
+        <td class="text-right node-buttons">
+            <button type="button" class="btn btn-default btn-sm up" title="Hoch">
+                <span class="glyphicon glyphicon-arrow-up"></span>
+            </button>
+            <button type="button" class="btn btn-default btn-sm down" title="Herunter">
+                <span class="glyphicon glyphicon-arrow-down"></span>
+            </button>
+            <button type="button" class="btn btn-default btn-sm delete" title="Löschen">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+        </td>
+    </tr>
 </template>
 
 <template name="invictus_settings_modal">
@@ -95,11 +140,14 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Typ</label>
                             <div class="btn-group col-sm-9">
-                                <button type="button" class="btn btn-default type-text {{getTypeState 'text'}}">
+                                <button type="button" disabled="{{isButtonDisabled}}" class="btn btn-default type-text {{getTypeState 'text'}}">
                                     Text
                                 </button>
                                 <button type="button" class="btn btn-default type-button {{getTypeState 'button'}}">
                                     Button
+                                </button>
+                                <button type="button" disabled="{{isButtonDisabled}}" class="btn btn-default type-dropdown {{getTypeState 'dropdown'}}">
+                                    Dropdown
                                 </button>
                             </div>
                         </div>

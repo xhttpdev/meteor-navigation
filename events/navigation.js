@@ -1,6 +1,6 @@
 Template.invictus_navigation.events({
     'click #navbar': function (event) {
-        $(event.currentTarget).collapse('hide');
+        //$(event.currentTarget).collapse('hide');
     }
 });
 
@@ -9,7 +9,7 @@ Template.invictus_navigation_item_collapsable.events({
         var button = $(event.target);
         var route = button.data('route');
 
-        if (route !== '') {
+        if (route !== '' && route !== undefined) {
             Router.go(route);
         }
     },

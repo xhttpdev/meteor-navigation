@@ -24,6 +24,7 @@ Package.onUse(function (api) {
     ]);
 
     api.addFiles([
+        'lib/NestedData.js',
         'navigation.js',
         'views/navigation.html',
         'views/settings.html',
@@ -39,4 +40,5 @@ Package.onUse(function (api) {
     ], 'server');
 
     api.export('Navigation');
+    api.export('NestedData');
 });

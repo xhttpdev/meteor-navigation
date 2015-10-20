@@ -5,6 +5,9 @@ Meteor.subscribe("navigation");
 Template.invictus_navigation_settings.helpers({
     data: function () {
         return NavigationCollection.find({}, {sort: {'pos': 1}});
+    },
+    isDropdown: function () {
+        return (this.type === 'dropdown');
     }
 });
 
@@ -19,7 +22,8 @@ Template.invictus_settings_modal.helpers({
             {name: 'success'},
             {name: 'info'},
             {name: 'warning'},
-            {name: 'danger'}
+            {name: 'danger'},
+            {name: 'link'}
         ];
     },
     optionIsActive: function (option) {
@@ -27,5 +31,8 @@ Template.invictus_settings_modal.helpers({
     },
     getTypeState: function (type) {
         return (this.type === type) ? 'active' : '';
+    },
+    isButtonDisabled: function () {
+        return (this.collapsable === false);
     }
 });

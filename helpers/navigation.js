@@ -49,6 +49,14 @@ Template.invictus_navigation_item_collapsable.helpers({
         return (this.type === 'text');
     },
 
+    isButton: function () {
+        return (this.type === 'button');
+    },
+
+    isDropdown: function () {
+        return (this.type === 'dropdown');
+    },
+
     isActive: function () {
         return (Session.get('activeUrl') === '/' + this.route);
     }

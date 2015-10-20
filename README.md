@@ -1,4 +1,4 @@
 # TODO
 
 - übersetzungen
-- Text deaktivieren wenn collapsable aus ist
+- positions berechnung nach löschen
