@@ -1,6 +1,6 @@
 Package.describe({
     name: 'invictus:navigation',
-    version: '0.8.1',
+    version: '0.8.2',
     // Brief, one-line summary of the package.
     summary: 'Bootstrap Navbar Administration',
     // URL to the Git repository containing the source code for this package.
@@ -19,6 +19,7 @@ Package.onUse(function (api) {
         'iron:router@1.0.12',
         'fourseven:scss@3.2.0',
         'accounts-password@1.1.1',
+        'invictus:messages@0.9.1',
         'ecmascript',
         'mongo'
     ]);

@@ -8,7 +8,7 @@
                 </button>
             </header>
 
-            <table class="table table-hover">
+            <table class="table table-hover table-condensed">
                 <thead>
                 <tr>
                     <th>{{getNavigationText 'columnText'}}</th>
@@ -20,14 +20,14 @@
                 <tbody>
                 {{#each data}}
                     <tr>
-                        <td><input type="text" class="form-control" name="text" value="{{text}}"></td>
-                        <td>
+                        <td class="nav-text"><input type="text" class="form-control" name="text" value="{{text}}"></td>
+                        <td class="nav-route">
                             <div class="input-group">
                                 <span class="input-group-addon">/</span>
                                 <input type="text" class="form-control" name="route" value="{{route}}">
                             </div>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center nav-hidden">
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="hidden" checked="{{hidden}}">

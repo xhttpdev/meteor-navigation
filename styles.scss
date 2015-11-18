@@ -1,8 +1,22 @@
 .not-collapsable {
-  display: none;
+    display: none;
 
-  @media (max-width: 767px) {
-    display: block;
-  }
+    @media (max-width: 767px) {
+        display: block;
+    }
 
+}
+
+table {
+    .nav-text, .nav-route {
+        width: 250px;
+    }
+
+    .nav-hidden {
+        width: 100px;
+    }
+
+    .main-buttons {
+        width: 200px;
+    }
 }

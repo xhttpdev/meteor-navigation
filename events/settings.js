@@ -20,11 +20,13 @@ Template.invictus_navigation_settings.events({
     'click .main-buttons .delete': function (event) {
         var data = this;
 
-        if (confirm(Navigation.getText('deleteConfirmationText', {text: data.text}))) {
-            Meteor.call('deleteNavigationNode', data._id, function () {
-                Sorting.calcPositions();
-            });
-        }
+        Msg.dialog(Navigation.getText('deleteConfirmationText', {text: '<strong>' + data.text + '</strong>'}), null, function (btn) {
+            if (btn === Msg.YES) {
+                Meteor.call('deleteNavigationNode', data._id, function () {
+                    Sorting.calcPositions();
+                });
+            }
+        });
     },
     'click .main-buttons .up': function (event) {
         Sorting.switchPositions(this, -1);
@@ -100,12 +102,14 @@ Template.invictus_navigation_node.events({
     'click .node-buttons .delete': function (event) {
         var data = this;
 
-        if (confirm(Navigation.getText('deleteConfirmationText', {text: data.text}))) {
-            var cursor = NestedData.remove(NavigationCollection, data, 'nodes');
-            Meteor.call("updateNavigationNode", cursor._id, cursor, function() {
-                Sorting.calcPositions();
-            });
-        }
+        Msg.dialog(Navigation.getText('deleteConfirmationText', {text: '<strong>' + data.text + '</strong>'}), null, function (btn) {
+            if (btn === Msg.YES) {
+                var cursor = NestedData.remove(NavigationCollection, data, 'nodes');
+                Meteor.call("updateNavigationNode", cursor._id, cursor, function() {
+                    Sorting.calcPositions();
+                });
+            }
+        });
     },
     'click .node-buttons .up': function (event) {
         var data = this;
