@@ -1,6 +1,6 @@
 Package.describe({
     name: 'invictus:navigation',
-    version: '0.8.2',
+    version: '0.9.0',
     // Brief, one-line summary of the package.
     summary: 'Bootstrap Navbar Administration',
     // URL to the Git repository containing the source code for this package.
@@ -11,21 +11,21 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-    api.versionsFrom('1.2.0.2');
+    api.versionsFrom('1.4.1.1');
 
     api.use([
         'session',
         'templating',
+        'npm-bcrypt',
         'iron:router@1.0.12',
-        'fourseven:scss@3.2.0',
+        'fourseven:scss@3.8.0_1',
         'accounts-password@1.1.1',
-        'invictus:messages@0.9.1',
+        'invictus:messages@0.10.0',
         'ecmascript',
         'mongo'
     ]);
 
     api.addFiles([
-        'styles.scss',
         'lib/NestedData.js',
         'lib/Sorting.js',
         'navigation.js',
@@ -35,7 +35,8 @@ Package.onUse(function (api) {
         'helpers/settings.js',
         'events/navigation.js',
         'events/settings.js',
-        'routes.js'
+        'routes.js',
+        'styles.scss'
     ], 'client');
 
     api.addFiles([
